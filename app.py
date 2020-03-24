@@ -1,10 +1,9 @@
-from flask import Flask, send_from_directory
-from flask import request
-from urllib.parse import unquote
-import rdflib
-import rdfextras
 import json
-import sys
+
+import rdfextras
+import rdflib
+from flask import Flask, send_from_directory
+
 rdfextras.registerplugins()
 
 app = Flask(__name__)
@@ -12,7 +11,9 @@ app = Flask(__name__)
 # Basic configuration of the app
 fileFinki = "data/finki.ttl"
 
-prefix = rdflib.Namespace("http://localhost:5000/data/")
+wbsfinki = rdflib.Namespace("http://localhost:5000/data#")
+aiiso = rdflib.Namespace("http://purl.org/vocab/aiiso/schema#")
+
 
 # Home Route
 @app.route("/")
@@ -22,27 +23,41 @@ def _main():
 
 @app.route("/test")
 def test():
+    c = rdflib.Dataset
     g = rdflib.Graph()
     g.parse(fileFinki, format="ttl")
 
     label = rdflib.Literal("Faculty of bla")
     comment = rdflib.Literal("Jako nesto")
+    g.add((wbsfinki.finki, rdflib.RDFS.label, label))
+    g.add((wbsfinki.finki, rdflib.RDFS.comment, comment))
+    g.add((wbsfinki.finki, rdflib.RDF.type, aiiso.Faculty))
+    g.add((wbsfinki.finki, aiiso.teaches, wbsfinki.pit))
+    g.serialize(fileFinki, "ttl")
 
-    finki = prefix.finki
-    g.add((finki, rdflib.RDFS.label, label))
-    g.add((finki, rdflib.RDFS.comment, comment))
-    f = open(fileFinki, "w+")
-    towrite = g.serialize(format="ttl").decode("utf-8")
-    f.write(towrite)
-    f.close()
+    results = g.query("""
+        SELECT DISTINCT ?programa ?label
+        WHERE {
+            ?faculty aiiso:teaches ?programa .
+            ?programa rdfs:label ?label
+        }
+        """)
 
-    return json.dumps({"status": "Successful", "message":"FINKI v1.0.0 - API connection successful"})
+
+    # Cities to be stored
+    cities = []
+
+    for row in results:
+        # Append each pharmacy
+        cities.append(row)
+
+    return json.dumps(cities)
 
 
 # FileReturn
-@app.route("/data/<file>")
-def serve_files(file):
-    return send_from_directory('data/', file+".ttl")
+@app.route("/data")
+def serve_files():
+    return send_from_directory('data/', "finki.ttl")
 
 
 # All cities available
@@ -143,5 +158,5 @@ def serve_files(file):
 #         pharmacies.append({'name': row.name, 'uri': row.pharmacy, 'address': row.adr, 'latitude': row.lat, 'longitude': row.lng })
 #
 #     return json.dumps(pharmacies)
-    
+
 if __name__ == "__main__": app.run(debug=True)

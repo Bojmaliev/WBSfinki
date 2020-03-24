@@ -3,12 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>FINKI Wiki</title>
+    <link rel="stylesheet" type="text/css" href="css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+<!--    <script src="js/vue.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 </head>
 <body>
 <div id="app">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <router-link to="/">
+                        <img src="https://finki.ukim.mk/sites/default/files/logo_10.png" height="48" alt="">
+                    </router-link>
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                   data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        <router-link to="/study-programs">Наставни програми</router-link>
+                    </a>
+                    <a class="navbar-item">
+                        <router-link to="/subjects">Предмети</router-link>
+                    </a>
+                    <a class="navbar-item">
+                        <router-link to="/staff">Кадар</router-link>
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <strong>Sign up</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="section" style="flex:1;">
+        <main class="container">
+            <router-view></router-view>
+        </main>
+    </section>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>WBS Finki project by: Martin Bojmaliev and Petar Boskoski</p>
+        <p>
+            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
+            licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+    </div>
+</footer>
 
 </div>
-<script src="js/vue.min.js"></script>
+<script src="js/staff.js"></script>
+<script src="js/createStaff.js"></script>
 <script src="js/javascript.js"></script>
 </body>
 </html>
