@@ -8,7 +8,8 @@ const routes = [
     {path: '/study-programs', component: StudyPrograms},
     {path: '/subjects', component: Subjects},
     {path: '/staff', component: Staff},
-    {path: '/create-staff', component: CreateStaff}
+    {path: '/staff/:name', component: ViewProfile},
+    {path: '/create-staff', component: CreateStaff},
 ];
 
 const router = new VueRouter({
