@@ -6,218 +6,68 @@ const Staff = {
             <h1 class="title">Кадар</h1>
         </div>
         <div class="level-right">
-                <router-link to="/create-staff" tag="button" class="button is-info">Креирај професор</router-link>
+                <router-link to="/create-staff" tag="button" class="button is-info">Креирај кадар</router-link>
         </div>
     </div>
-                  <h2 class="subtitle">Професори</h2>
-
-        <div class="columns">
-              <div class="column">
+    <div v-for="s in staff" class="field">
+        <h2 class="subtitle">{{s.label}}</h2>
+        
+        <div class="columns " v-for="six in s.list">
+            <div v-for="person in six" class="column is-2">
+            <router-link :to="{name:'viewStaff', params:{id:person.id}}">
                 <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-        <p class="title is-6">Ивица Димитриовски</p>
-        <p class="subtitle is-6">Професор</p>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-        <p class="title is-6">Ивица Димитриовски</p>
-        <p class="subtitle is-6">Професор</p>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-        <p class="title is-6">Ивица Димитриовски</p>
-        <p class="subtitle is-6">Професор</p>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-        <p class="title is-6">Ивица Димитриовски</p>
-        <p class="subtitle is-6">Професор</p>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-        <p class="title is-6">Ивица Димитриовски</p>
-        <p class="subtitle is-6">Професор</p>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-        <p class="title is-6">Ивица Димитриовски</p>
-        <p class="subtitle is-6">Професор</p>
-  </div>
-</div>
-            </div>
-            
+                <div class="card-image">
+            <figure class="image is-3by3">
+              <img v-bind:src="person.img" object-fit="cover" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content">
+                <p class="title is-6">{{person.name}}</p>
+                <p class="subtitle is-6">{{person.title}}</p>
+          </div>
+        </div></router-link>
+            </div>   
+        
         </div>
-
-      <h2 class="subtitle">
-       Професори
-      </h2>
-        <div class="columns">
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">John Smith</p>
-        <p class="subtitle is-6">@johnsmith</p>
-      </div>
     </div>
-
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
-      <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
 </div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">John Smith</p>
-        <p class="subtitle is-6">@johnsmith</p>
-      </div>
-    </div>
+`,
+    data:function () {
+        const url = "http://purl.org/vocab/aiiso-roles/schema#";
+        return {
+            staff: [
+                {
+                    label:"Професори",
+                    type: url+"Professor",
+                    list: []
+                },
+                {
+                    label:"Асистенти",
+                    type: url+"Assistant",
+                    list: []
+                },
+                {
+                    label:"Административци",
+                    type: url+"Admission_Officer",
+                    list: []
+                }
+                ]
+        }
+    },
+    methods:{
+        getAllProff() {
+            fetch(API + "/get_all_professors")
+                .then(a => a.json())
+                .then(a => {
+                     this.staff.map(b=>{
+                        b["list"] = chunk(a.filter(z => z.role === b["type"]));
+                        return b;
+                    });
+                })
+        }
 
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
-      <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">John Smith</p>
-        <p class="subtitle is-6">@johnsmith</p>
-      </div>
-    </div>
-
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
-      <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-</div>
-            </div>
-            <div class="column">
-                <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">John Smith</p>
-        <p class="subtitle is-6">@johnsmith</p>
-      </div>
-    </div>
-
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
-      <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-</div>
-            </div>
-        </div>
-        </div>
-`
+    },
+    mounted(){
+        this.getAllProff();
+    }
 };

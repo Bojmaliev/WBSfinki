@@ -1,16 +1,307 @@
 @prefix aiiso: <http://purl.org/vocab/aiiso/schema#> .
+@prefix aiiso-roles: <http://purl.org/vocab/aiiso-roles/schema#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
 @prefix wbsfinki: <http://localhost:5000/data#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-wbsfinki:finki a aiiso:Faculty ;
-    rdfs:label "Faculty of bla" ;
-    aiiso:teaches wbsfinki:pit ;
-    rdfs:comment "Jako nesto" .
+<http://localhost:5000/data#1234> a aiiso:Course ;
+    rdfs:label "12345" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "" .
+
+wbsfinki:CS2222comment_0 wbsfinki:forStaff wbsfinki:martin_bojmaliev ;
+    wbsfinki:forSubject wbsfinki:cs2222 ;
+    rdfs:comment "Мартин беше одличен" .
+
+wbsfinki:CS222comment_0 wbsfinki:forStaff wbsfinki:martin_bojmaliev ;
+    wbsfinki:forSubject wbsfinki:cs2222 ;
+    rdfs:comment "Мартин беше одличен" .
+
+wbsfinki:CSCScomment_0 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:martin_bojmaliev ;
+    wbsfinki:forSubject wbsfinki:cscs ;
+    rdfs:comment "Komentar kaj Martin" .
+
+wbsfinki:CSCScomment_1 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:test_test ;
+    wbsfinki:forSubject wbsfinki:cscs ;
+    rdfs:comment "Komentar kaj test" .
+
+wbsfinki:academicYear a rdf:Property ;
+    rdfs:domain aiiso:Course ;
+    rdfs:range rdfs:Literal .
+
+wbsfinki:dasdsa a aiiso:Course ;
+    rdfs:label "TEST must listen" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    wbsfinki:waysToPass "dsad" ;
+    aiiso:part_of wbsfinki:finki ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "" .
+
+wbsfinki:dsadas a aiiso:Course ;
+    rdfs:label "dsadsa" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "" .
+
+wbsfinki:dsadsacomment_0 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:mv_mv ;
+    wbsfinki:forSubject wbsfinki:dsadsa ;
+    rdfs:comment "dsa dsa dsa" .
+
+wbsfinki:dsadsacomment_1 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:vv_vv ;
+    wbsfinki:forSubject wbsfinki:dsadsa ;
+    rdfs:comment "sa dsad sa" .
+
+wbsfinki:dsadscomment_0 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:martin_bojmaliev ;
+    wbsfinki:forSubject wbsfinki:dsads ;
+    rdfs:comment "MARTIN" .
+
+wbsfinki:dsadscomment_1 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:test_test ;
+    wbsfinki:forSubject wbsfinki:dsads ;
+    rdfs:comment "TEST" .
+
+wbsfinki:forStaff a rdf:Property ;
+    rdfs:domain rdfs:comment ;
+    rdfs:range foaf:Person .
+
+wbsfinki:forSubject a rdf:Property ;
+    rdfs:domain rdfs:comment ;
+    rdfs:range aiiso:Course .
+
+wbsfinki:hasMandatory a rdf:Property ;
+    rdfs:domain aiiso:Programme ;
+    rdfs:range aiiso:Course .
+
+wbsfinki:hasOptional a rdf:Property ;
+    rdfs:domain aiiso:Programme ;
+    rdfs:range aiiso:Course .
+
+wbsfinki:martin_test_posleden a aiiso:Programme ;
+    rdfs:label "MARTIN TEST POSLEDEN" ;
+    wbsfinki:hasMandatory wbsfinki:cs222,
+        wbsfinki:cscs,
+        wbsfinki:tetete ;
+    wbsfinki:hasOptional wbsfinki:cs2222,
+        wbsfinki:dsads,
+        wbsfinki:dsadsa ;
+    schema:author "bojmaliev" .
+
+wbsfinki:mustListenBefore a rdf:Property ;
+    rdfs:domain aiiso:Course ;
+    rdfs:range aiiso:Course .
+
+wbsfinki:mustPassedBefore a rdf:Property ;
+    rdfs:domain aiiso:Course ;
+    rdfs:range aiiso:Course .
+
+wbsfinki:nova_programa a aiiso:Programme ;
+    rdfs:label "NOVA PROGRAMA" ;
+    wbsfinki:hasMandatory wbsfinki:cscs ;
+    schema:author "bojmaliev" .
+
+wbsfinki:role a rdf:Property ;
+    rdfs:domain foaf:Person ;
+    rdfs:range aiiso-roles:Role .
+
+wbsfinki:segamoradarabotecomment_0 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:mv_mv ;
+    wbsfinki:forSubject wbsfinki:segamoradarabote ;
+    rdfs:comment "mv mv" .
+
+wbsfinki:segamoradarabotecomment_1 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:test_test ;
+    wbsfinki:forSubject wbsfinki:segamoradarabote ;
+    rdfs:comment "test test" .
+
+wbsfinki:semestar a rdf:Property ;
+    rdfs:domain aiiso:Course ;
+    rdfs:range rdfs:Literal .
+
+wbsfinki:testcomment_0 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:martin_bojmaliev ;
+    wbsfinki:forSubject wbsfinki:test ;
+    rdfs:comment "" .
+
+wbsfinki:testdsadsadsa_programa a aiiso:Programme ;
+    rdfs:label "testdsadsadsa PROGRAMA" ;
+    wbsfinki:hasOptional wbsfinki:cscs ;
+    schema:author "bojmaliev" .
+
+wbsfinki:tetetecomment_0 a rdfs:comment ;
+    wbsfinki:forStaff wbsfinki:mv_mv ;
+    rdfs:comment "test" .
+
+wbsfinki:waysToPass a rdf:Property ;
+    rdfs:domain aiiso:Course ;
+    rdfs:range rdfs:Literal .
+
+wbsfinki:пет_како_сшто_дса_ a aiiso:Programme ;
+    rdfs:label "ПЕТ КАКО СШТО ДСА " ;
+    wbsfinki:hasMandatory wbsfinki:cs2222,
+        wbsfinki:tetete ;
+    schema:author "bojmaliev" .
+
+wbsfinki:петар_бошкоски a foaf:Person ;
+    dbo:birthDate "1997-07-16" ;
+    dbo:birthPlace dbo:Makedonski_Brod ;
+    wbsfinki:role aiiso-roles:Assistant ;
+    schema:author "bojmaliev" ;
+    foaf:familyName "Бошкоски" ;
+    foaf:givenName "Петар" ;
+    foaf:img <https://scontent.fskp2-1.fna.fbcdn.net/v/t1.0-9/13166122_1311576732190172_4417009325518342932_n.jpg?_nc_cat=105&_nc_sid=85a577&_nc_ohc=S3ukYgKlj6IAX_RBF2y&_nc_ht=scontent.fskp2-1.fna&oh=b1627dea3d8734b029b3ee5089da8e93&oe=5EA014EE> ;
+    foaf:name "Петар Бошкоски" ;
+    foaf:title "Дипломиран" .
 
 wbsfinki:pit a aiiso:Programme ;
     rdfs:label "PIT" ;
     rdfs:comment "programa" .
+
+wbsfinki:test a aiiso:Course ;
+    rdfs:label "test" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:martin_bojmaliev ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "" .
+
+wbsfinki:cs222 a aiiso:Course ;
+    rdfs:label "Објектно ориентирано програмирање" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:martin_bojmaliev ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "predmetot e odlicen" .
+
+wbsfinki:segamoradarabote a aiiso:Course ;
+    rdfs:label "SegaMoraDatarabote" ;
+    wbsfinki:academicYear "II" ;
+    wbsfinki:mustListenBefore wbsfinki:cs2222 ;
+    wbsfinki:mustPassedBefore wbsfinki:cs222,
+        wbsfinki:tetete ;
+    wbsfinki:semestar "Летен" ;
+    wbsfinki:waysToPass "dsadsadsad1" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:martin_bojmaliev,
+        wbsfinki:mv_mv,
+        wbsfinki:test_test ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "1dasdasd",
+        "dsadas" .
+
+wbsfinki:vv_vv a foaf:Person ;
+    wbsfinki:role aiiso-roles:Assistant,
+        aiiso-roles:Professor ;
+    schema:author "bojmaliev" ;
+    foaf:familyName "vv" ;
+    foaf:givenName "vv" ;
+    foaf:img <https://bulma.io/images/placeholders/128x128.png> ;
+    foaf:name "vv vv" ;
+    foaf:title "Дипломиран" .
+
+wbsfinki:dsads a aiiso:Course ;
+    rdfs:label "adsadsa" ;
+    wbsfinki:academicYear "II" ;
+    wbsfinki:semestar "Летен" ;
+    wbsfinki:waysToPass "VAKA SE POLAGA" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:martin_bojmaliev,
+        wbsfinki:test_test ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "OPIS" .
+
+wbsfinki:dsadsa a aiiso:Course ;
+    rdfs:label "MOJOT NOV " ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:mv_mv,
+        wbsfinki:vv_vv ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "dsadsad sa" .
+
+wbsfinki:tetete a aiiso:Course ;
+    rdfs:label "dsadsa" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:mv_mv ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "" .
+
+wbsfinki:cs2222 a aiiso:Course ;
+    rdfs:label "Стурктурно Програмирање" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:martin_bojmaliev ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "Тест" .
+
+wbsfinki:cscs a aiiso:Course ;
+    rdfs:label "Programiranje kaj martin" ;
+    wbsfinki:academicYear "I" ;
+    wbsfinki:semestar "Зимски" ;
+    aiiso:part_of wbsfinki:finki ;
+    aiiso:responsibilityOf wbsfinki:martin_bojmaliev,
+        wbsfinki:test_test ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "Ova e opis na predmetot" .
+
+wbsfinki:mv_mv a foaf:Person ;
+    wbsfinki:role aiiso-roles:Assistant,
+        aiiso-roles:Professor ;
+    schema:author "bojmaliev" ;
+    foaf:familyName "mv" ;
+    foaf:givenName "mv" ;
+    foaf:img <https://bulma.io/images/placeholders/128x128.png> ;
+    foaf:name "mv mv" ;
+    foaf:title "Дипломиран" .
+
+wbsfinki:test_test a foaf:Person ;
+    wbsfinki:role aiiso-roles:Professor ;
+    schema:author "bojmaliev" ;
+    foaf:familyName "Test" ;
+    foaf:givenName "Test" ;
+    foaf:img <https://bulma.io/images/placeholders/128x128.png> ;
+    foaf:name "Test Test" ;
+    foaf:title "Дипломиран" .
+
+wbsfinki:finki a aiiso:Faculty ;
+    rdfs:label "test" ;
+    dbo:abstract "Факултетот за информатички науки и компјутерско инженерство (ФИНКИ) е резултат на здружувањето на двата најголеми институти од областа на информатиката и компјутерската техника во Македонија – Институтот за информатика (ИИ) при Природно-математичкиот факултет и Институтот за компјутерска техника и информатика (ИКТИ) при Факултетот за електротехника и информациски технологии. На тој начин се продолжува традицијата на развој на информатичките науки во Република Македонија.c" ;
+    aiiso:teaches wbsfinki:pit ;
+    schema:author "bojmaliev" ;
+    rdfs:comment "Jako nesto",
+        "Test",
+        "dsa",
+        "kazi nesto novo",
+        "test",
+        "тест" .
+
+wbsfinki:martin_bojmaliev a foaf:Person ;
+    wbsfinki:role aiiso-roles:Professor ;
+    schema:author "bojmaliev" ;
+    foaf:familyName "Bojmaliev" ;
+    foaf:givenName "Martin" ;
+    foaf:img <https://yt3.ggpht.com/a/AGF-l7-Vr3jbZgZKbxDxP9FtEwJpHrpfVu0N5NxvwA=s900-c-k-c0xffffffff-no-rj-mo> ;
+    foaf:name "Martin Bojmaliev" ;
+    foaf:title "Студент" .
 

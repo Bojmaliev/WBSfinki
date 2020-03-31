@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>FINKI Wiki</title>
     <link rel="stylesheet" type="text/css" href="css/bulma.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-<!--    <script src="js/vue.min.js"></script>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/f62842e4a9.js" crossorigin="anonymous"></script>
+    <meta property="og:title" content="FINKI Wiki"/>
+    <meta property="og:type" content="school"/>
+    <meta property="og:url" content="https://finki.trkalo.mk/"/>
+    <meta property="og:image" content="https://finki.ukim.mk/sites/default/files/logo_10.png"/>
+    <!--    <script src="js/vue.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="js/functions.js"></script>
+
 </head>
 <body>
 <div id="app">
@@ -20,7 +28,8 @@
                     </router-link>
                 </a>
 
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                <a role="button" v-on:click="mobileMenu = !mobileMenu" class="navbar-burger burger"
+                   v-bind:class="{'is-active': mobileMenu}" aria-label="menu" aria-expanded="false"
                    data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -28,24 +37,24 @@
                 </a>
             </div>
 
-            <div id="navbarBasicExample" class="navbar-menu">
+            <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{'is-active': mobileMenu}">
                 <div class="navbar-start">
-                    <a class="navbar-item">
-                        <router-link to="/study-programs">Наставни програми</router-link>
-                    </a>
-                    <a class="navbar-item">
-                        <router-link to="/subjects">Предмети</router-link>
-                    </a>
-                    <a class="navbar-item">
-                        <router-link to="/staff">Кадар</router-link>
-                    </a>
+                    <router-link v-bind:class="{'is-active': isRoute('study-programs')}" class="navbar-item" to="/study-programs">Студиски програми</router-link>
+                    <router-link v-bind:class="{'is-active': isRoute('subjects')}"  class="navbar-item" to="/subjects">Предмети</router-link>
+                    <router-link v-bind:class="{'is-active': isRoute('staff')}"  class="navbar-item" to="/staff">Кадар</router-link>
                 </div>
 
                 <div class="navbar-end">
                     <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary">
-                                <strong>Sign up</strong>
+                        <div class="buttons" v-if="!logged">
+                            <a class="button is-primary" v-on:click="login()">
+                                <strong>Најава</strong>
+                            </a>
+                        </div>
+                        <div v-else>
+                            Здраво, {{logged}} |
+                            <a class="is-primary" v-on:click="logout()">
+                                Одјава
                             </a>
                         </div>
                     </div>
@@ -55,26 +64,58 @@
     </nav>
     <section class="section" style="flex:1;">
         <main class="container">
+
             <router-view></router-view>
         </main>
     </section>
 
-<footer class="footer">
-    <div class="content has-text-centered">
-        <p>WBS Finki project by: Martin Bojmaliev and Petar Boskoski</p>
-        <p>
-            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
-            licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        </p>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>WBS Finki project by: Martin Bojmaliev and Petar Boskoski</p>
+            <p>
+                <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
+                licensed
+                <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+</div>
 
+<div id="loginForm">
+    <div class="modal" v-bind:class="{'is-active': opened}">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Најава</p>
+                <button v-on:click="close()" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Корисничко име</label>
+                    <div class="control">
+                        <input class="input" v-model="username" type="text" placeholder="Внесете корисничко име">
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" v-on:click="login()">Најава</button>
+                <button class="button" v-on:click="close()">Откажи</button>
+            </footer>
+        </div>
+    </div>
 </div>
 <script src="js/staff.js"></script>
 <script src="js/createStaff.js"></script>
+<script src="js/createSubject.js"></script>
+<script src="js/editSubject.js"></script>
+<script src="js/home.js"></script>
+<script src="js/createStudyProgram.js"></script>
 <script src="js/viewProfile.js"></script>
+<script src="js/viewSubject.js"></script>
+<script src="js/viewStudyProgram.js"></script>
+<script src="js/studyPrograms.js"></script>
+<script src="js/subjects.js"></script>
 <script src="js/javascript.js"></script>
 </body>
 </html>

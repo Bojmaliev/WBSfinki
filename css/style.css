@@ -3,3 +3,14 @@
     min-height: 100vh;
     flex-direction: column;
 }
+.logo_img {
+    height: 250px;
+    width: 250px;
+}
+.panel-block {
+    color: #363636;
+    font-size: larger;
+}
+.panel-tabs:not(:last-child), .panel-block:not(:last-child) {
+    border-bottom: 2px solid #ededed;
+}
