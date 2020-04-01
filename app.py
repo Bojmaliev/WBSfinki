@@ -8,11 +8,11 @@ rdfextras.registerplugins()
 app = Flask(__name__)
 CORS(app)
 # Basic configuration of the app
-fileFinki = "data/finki.ttl"
+fileFinki = "/home/wbsfinki/mysite/finki.ttl"
 
 ns = {
     "foaf": rdflib.Namespace("http://xmlns.com/foaf/0.1/"),
-    "wbsfinki": rdflib.Namespace("http://localhost:5000/data#"),
+    "wbsfinki": rdflib.Namespace("http://wbsfinki.pythonanywhere.com/data#"),
     "aiiso": rdflib.Namespace("http://purl.org/vocab/aiiso/schema#"),
     "aiiso-roles": rdflib.Namespace("http://purl.org/vocab/aiiso-roles/schema#"),
     "rdfs": rdflib.RDFS,
@@ -23,9 +23,9 @@ ns = {
 
 
 # Home Route
-@app.route("/")
-def _main():
-    return jsonify({"success": True})
+#@app.route("/")
+#def _main():
+#    return jsonify({"success": True})
 
 
 @app.route("/create_ontology")
@@ -223,7 +223,7 @@ def edit_course(code):
 # FileReturn
 @app.route("/data")
 def serve_files():
-    return send_from_directory('data/', "finki.ttl")
+    return send_from_directory('', "finki.ttl")
 
 
 # All proffesors
@@ -237,7 +237,7 @@ def get_all_professors():
         ?professor foaf:name ?name .
         ?professor wbsfinki:role ?role .
         ?professor foaf:title ?title .
-        ?professor foaf:img ?img 
+        ?professor foaf:img ?img
         } ORDER BY ?name
     """)
     professors = []
@@ -264,7 +264,7 @@ def get_staff(staff):
         OPTIONAL { """ + uri + """ dbo:birthPlace ?birthPlace }
         OPTIONAL { """ + uri + """ foaf:homepage ?homepage }
         OPTIONAL { """ + uri + """ foaf:schoolHomepage ?schoolHomepage }
-        OPTIONAL { """ + uri + """ foaf:comment ?comment }
+        OPTIONAL { """ + uri + """ rdfs:comment ?comment }
         }
     """)
     ret = {}
@@ -333,7 +333,7 @@ def get_homepage():
     results = g.query("""
         SELECT ?comment
         WHERE {
-        wbsfinki:finki rdfs:comment ?comment 
+        wbsfinki:finki rdfs:comment ?comment
         }
         """)
     comments = []
@@ -347,7 +347,7 @@ def get_homepage():
     results = g.query("""
             SELECT DISTINCT ?programme
             WHERE {
-            ?programme rdf:type aiiso:Programme 
+            ?programme rdf:type aiiso:Programme
             }
             """)
     noProgrammes = 0
@@ -357,7 +357,7 @@ def get_homepage():
     results = g.query("""
                 SELECT DISTINCT ?staff
                 WHERE {
-                ?staff rdf:type foaf:Person 
+                ?staff rdf:type foaf:Person
                 }
                 """)
     noStaff = 0
@@ -367,7 +367,7 @@ def get_homepage():
     results = g.query("""
                     SELECT DISTINCT ?subject
                     WHERE {
-                    ?subject rdf:type aiiso:Course 
+                    ?subject rdf:type aiiso:Course
                     }
                     """)
     noSubjects = 0
@@ -451,7 +451,7 @@ def getSubjectInformations(subjectId):
                                 wbsfinki:forStaff ?professor .
                                 ?professor foaf:name ?profName
                             OPTIONAL {
-                                ?comment rdfs:comment ?text 
+                                ?comment rdfs:comment ?text
                             }
                        }
                    """)
@@ -476,7 +476,7 @@ def getSubjectsByStudyProgram(studyProgram):
         ?subject rdfs:label ?label .
         ?subject wbsfinki:academicYear ?academicYear .
         ?subject wbsfinki:semestar ?semestar .
-        
+
         }
     """)
     subjects = []

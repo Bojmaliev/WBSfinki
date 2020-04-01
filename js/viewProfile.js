@@ -25,7 +25,7 @@ const ViewProfile = {
                             </tr>
                             <tr v-if="user.birthPlace">
                                 <td>Роден во:</td>
-                                <td><b>{{user.birthPlace}}</b></td>
+                                <td><b><a v-bind:href="user.birthPlace">{{user.birthPlace.split("/")[4]}}</a></b></td>
                             </tr>
                             <tr v-if="user.homepage">
                                 <td>Веб страница:</td>
@@ -63,8 +63,8 @@ const ViewProfile = {
                     </p>
                 </div>
 
-                
-                
+
+
             </div>
         </div>
     </div>
@@ -88,6 +88,11 @@ const ViewProfile = {
                 })
         }
     },
+    watch: {
+    '$route.params.id': function (id) {
+      this.loadStaff(id)
+    }
+  },
     mounted() {
         const id = this.$route.params.id;
         this.loadStaff(id)

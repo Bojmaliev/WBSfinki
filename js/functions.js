@@ -1,5 +1,5 @@
-const API = "http://127.0.0.1:5000";
-const RDF = "http://localhost:5000/data#";
+const API = "http://wbsfinki.pythonanywhere.com";
+const RDF = "http://wbsfinki.pythonanywhere.com/data#";
 function getLogged() {
     return getCookie("logged-user");
 }

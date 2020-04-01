@@ -5,15 +5,18 @@
     <title>FINKI Wiki</title>
     <link rel="stylesheet" type="text/css" href="css/bulma.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon"
+      type="image/ico"
+      href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/f62842e4a9.js" crossorigin="anonymous"></script>
     <meta property="og:title" content="FINKI Wiki"/>
     <meta property="og:type" content="school"/>
-    <meta property="og:url" content="https://finki.trkalo.mk/"/>
+    <meta property="og:url" content="http://wbsfinki.pythonanywhere.com/"/>
     <meta property="og:image" content="https://finki.ukim.mk/sites/default/files/logo_10.png"/>
     <!--    <script src="js/vue.min.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-router.js"></script>
     <script src="js/functions.js"></script>
 
 </head>
@@ -71,7 +74,7 @@
 
     <footer class="footer">
         <div class="content has-text-centered">
-            <p>WBS Finki project by: Martin Bojmaliev and Petar Boskoski</p>
+            <p>WBS Finki project by: <router-link :to="{name:'viewStaff', params:{id:'мартин_бојмалиев'}}">Martin Bojmaliev</router-link> and <router-link :to="{name:'viewStaff', params:{id:'петар_бошкоски'}}">Petar Boskoski</router-link></p>
             <p>
                 <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
                 licensed

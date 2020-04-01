@@ -80,7 +80,7 @@ const CreateStaff = {
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <input class="input " v-bind="foaf__homepage" type="text" placeholder="Лична веб страница">
+        <input class="input " v-model="foaf__homepage" type="text" placeholder="Лична веб страница">
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@ const CreateStaff = {
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <input class="input " v-bind="foaf__schoolHomepage" type="text" placeholder="Веб страница од факултетот каде што студирал">
+        <input class="input " v-model="foaf__schoolHomepage" type="text" placeholder="Веб страница од факултетот каде што студирал">
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@ const CreateStaff = {
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <input class="input " v-bind="schema__sameAs" type="text" placeholder="RDF линк доколку постои">
+        <input class="input " v-model="schema__sameAs" type="text" placeholder="RDF линк доколку постои">
       </div>
     </div>
   </div>
@@ -142,7 +142,7 @@ const CreateStaff = {
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <textarea class="textarea" v-bind="rdfs__comment" placeholder="Коментар за личноста"></textarea>
+        <textarea class="textarea" v-model="rdfs__comment" placeholder="Коментар за личноста"></textarea>
       </div>
     </div>
   </div>

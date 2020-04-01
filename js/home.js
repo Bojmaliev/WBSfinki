@@ -10,9 +10,9 @@ const Home = {
 </div>
 </div>
 <div class="column is-4">
-<iframe width="100%" height="350" frameborder="0" scrolling="no" 
-marginheight="0" marginwidth="0" 
-src="https://www.openstreetmap.org/export/embed.html?bbox=21.406918%2C42.002648%2C21.411825%2C42.005436&amp;layer=mapnik&amp;marker=42.0041057,21.4094932" 
+<iframe width="100%" height="350" frameborder="0" scrolling="no"
+marginheight="0" marginwidth="0"
+src="https://www.openstreetmap.org/export/embed.html?bbox=21.406918%2C42.002648%2C21.411825%2C42.005436&amp;layer=mapnik&amp;marker=42.0041057,21.4094932"
 style="border: 1px solid black"></iframe>
 </div>
 </div>
@@ -25,7 +25,7 @@ style="border: 1px solid black"></iframe>
   </div>
   <div class="level-item has-text-centered">
     <div>
-      <p class="heading">Професори</p>
+      <p class="heading">Кадар</p>
       <p class="title">{{finki.noStaff}}</p>
     </div>
   </div>
@@ -61,7 +61,7 @@ style="border: 1px solid black"></iframe>
 </div>
 </div>
 </div>
-    
+
     <div class="modal" v-bind:class="{'is-active': commentModal}">
         <div class="modal-background"></div>
         <div class="modal-card">

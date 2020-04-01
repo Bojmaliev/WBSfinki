@@ -13,7 +13,7 @@ const ViewSubject = {
       </h2>
     </div>
   </div>
-</section>    
+</section>
 <div class="columns">
 <div class="column is-4">
 <div class="card">
@@ -62,20 +62,20 @@ const ViewSubject = {
     <p v-if="subject.comment">
     {{subject.comment}}
     </p>
-    <p v-else>Сеуште нема информации</p>
+    <p v-else>Се уште нема информации</p>
     </div>
     <div class="content" v-if="tabs===i"  v-for="(prof, i) in subject.professors">
         <p v-if="prof.comment">
     {{prof.comment}}
     </p>
-    <p v-else>Сеуште нема информации</p>
+    <p v-else>Се уште нема информации</p>
     </div>
-    
+
 <h4 class="subtitle is-4">Како се полага:</h4>
 <p v-if="subject.waysToPass">
 {{subject.waysToPass}}
 </p>
-<p v-else>Сеуште нема информации</p>
+<p v-else>Се уште нема информации</p>
 </div>
 </div>
 </div>
@@ -98,6 +98,11 @@ const ViewSubject = {
                 })
         }
     },
+    watch: {
+    '$route.params.id': function (id) {
+      this.loadSubject(id)
+    }
+  },
     mounted() {
         this.loadSubject(this.uri)
     },
